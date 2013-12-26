@@ -17,6 +17,7 @@
 ._*
 Thumbs.db
 .cache
+.idea
 .project
 .settings
 .tmproj
