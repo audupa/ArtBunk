@@ -52,4 +52,11 @@
         <constructor-arg><ref bean="dataSource"/></constructor-arg>
     </bean>
 
+    <bean id="baseDAO"  class ="com.ArtBunk.dao.impl.BaseDAOImpl">
+        <!--<property name="jdbcTemplate" ref="jdbcTemplate" />-->
+    </bean>
+
+    <bean id="userDAO"  class="com.ArtBunk.dao.impl.ImageDAOImpl" parent="baseDAO" />
+
+
 </beans>
