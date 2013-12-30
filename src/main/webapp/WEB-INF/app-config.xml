@@ -20,13 +20,14 @@
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
         <property name="url" value="jdbc:mysql://localhost:3306/testDB" />
         <property name="username" value="root" />
-        <property name="password" value="password" />
+
     </bean>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+
 
     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
         <property name="host" value="smtp.gmail.com" />
@@ -57,6 +58,9 @@
     </bean>
 
     <bean id="userDAO"  class="com.ArtBunk.dao.impl.ImageDAOImpl" parent="baseDAO" />
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="250000"/>
+    </bean>
 
 
 </beans>
