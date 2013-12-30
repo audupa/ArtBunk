@@ -3,6 +3,7 @@ package com.ArtBunk.controllers.iface;
 import com.ArtBunk.classes.Image;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.PathParam;
@@ -29,5 +30,8 @@ public interface ImageController {
     @ResponseBody
     public List<Image> getImagesWithCriteria(@PathVariable("criteria") String criteria,@RequestParam(value="limit",required=false,defaultValue = "2") String limit,HttpServletResponse response);
 
+    @RequestMapping(value="/image/upload", method=RequestMethod.POST)
+    public @ResponseBody String handleFileUpload(@RequestParam(value="name",required=false) String name,
+                                                 @RequestParam(value="file",required = false) MultipartFile file);
 
 }
