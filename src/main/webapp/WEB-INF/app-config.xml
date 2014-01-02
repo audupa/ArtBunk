@@ -10,7 +10,10 @@
 
 <!-- The configuration of the account manager application. -->
     <context:annotation-config/>
+    <mvc:default-servlet-handler/>
+
     <mvc:annotation-driven/>
+   <!-- <mvc:resources location="/images/" mapping="/images/**" />-->
     <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
 
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>
@@ -20,6 +23,7 @@
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
         <property name="url" value="jdbc:mysql://localhost:3306/testDB" />
         <property name="username" value="root" />
+        <property name="password" value="password" />
 
     </bean>
 
@@ -59,7 +63,7 @@
 
     <bean id="userDAO"  class="com.ArtBunk.dao.impl.ImageDAOImpl" parent="baseDAO" />
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <property name="maxUploadSize" value="250000"/>
+       <!-- <property name="maxUploadSize" value="740000"/>-->
     </bean>
 
 
