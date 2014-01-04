@@ -22,7 +22,7 @@ public interface ImageDAO {
     //show all the images depending on a criteria , limit being optional
     public List<Image> getImagesWithCriteria(String criteria, String limit);
 
-    public boolean saveImage(MultipartFile file) throws IOException;
+    public boolean saveImage(MultipartFile file,Image image) throws IOException;
 
     public List<ImageFile> retrieveImage(String name,HttpServletResponse response);
 }
