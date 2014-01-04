@@ -66,7 +66,7 @@ public class ImageControllerImpl implements ImageController {
                 image.setCategory(category);
                 image.setDescription(description);
                 image.setName(name);
-                image.setImageCost(Integer.parseInt(image_cost));
+                image.setImageCost(image_cost);
                 image.setMedium(medium);
                 image.setUserName(user_name);
 

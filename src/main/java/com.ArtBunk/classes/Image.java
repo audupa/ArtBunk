@@ -76,11 +76,11 @@ public class Image implements Serializable {
         this.last_updated = last_updated;
     }
 
-    public int getImageCost() {
+    public String getImageCost() {
         return imageCost;
     }
 
-    public void setImageCost(int imageCost) {
+    public void setImageCost(String imageCost) {
         this.imageCost = imageCost;
     }
 
@@ -100,19 +100,19 @@ public class Image implements Serializable {
         this.medium = medium;
     }
 
-    public int getNoOfLikes() {
+    public String getNoOfLikes() {
         return noOfLikes;
     }
 
-    public void setNoOfLikes(int noOfLikes) {
+    public void setNoOfLikes(String noOfLikes) {
         this.noOfLikes = noOfLikes;
     }
 
     private Date date_created;
     private Date last_updated;
-    private int imageCost;
+    private String imageCost;
     private String userName;
     private String medium;
-    int noOfLikes;
+    private String  noOfLikes;
 
 }
