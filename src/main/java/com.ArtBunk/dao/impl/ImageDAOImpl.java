@@ -3,6 +3,7 @@ package com.ArtBunk.dao.impl;
 import com.ArtBunk.classes.Image;
 import com.ArtBunk.classes.ImageFile;
 import com.ArtBunk.dao.iface.ImageDAO;
+import com.ArtBunk.util.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -10,11 +11,9 @@ import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.List;
 
 /**
@@ -82,7 +81,7 @@ public class ImageDAOImpl extends BaseDAOImpl implements ImageDAO{
         ImageFile imageFile = null;
         if(!file.isEmpty()) {
 
-            byte[] bytes = file.getBytes();
+            /*byte[] bytes = file.getBytes();
 
             BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File("-uploaded")));
             stream.write(bytes);
@@ -90,10 +89,10 @@ public class ImageDAOImpl extends BaseDAOImpl implements ImageDAO{
 
             String filePath = "C:/Users/audupa/ArtBunk/src/main/webapp/images/" + file.getOriginalFilename(); //Please note that I am going to remove hardcoaded path to get it from resource/property file
             File dest = new File(filePath);
-            file.transferTo(dest);
+            file.transferTo(dest);*/
 
             //Store the image in DB
-           /* imageFile = new ImageFile();
+            imageFile = new ImageFile();
             imageFile.setFileSize(file.getSize());
             imageFile.setFileName(file.getOriginalFilename());
             imageFile.setContent(file.getBytes());
@@ -105,11 +104,32 @@ public class ImageDAOImpl extends BaseDAOImpl implements ImageDAO{
                     usingGeneratedKeyColumns("id").
                     executeAndReturnKey(new BeanPropertySqlParameterSource(imageFile)).longValue();
 
-            System.out.println("************************"+id);  */
+            System.out.println("************************"+id);
 
-            // update the image_repo to store this id
+            String image_url = Constant.imageUrlPrefix + file.getOriginalFilename();
+            // update the image_repo to store this id add an entry in the image_repo table
+            String SQL = "insert into image_repo (image_url) values (?)";
+
+            jdbcTemplate.update(SQL,image_url);
 
         }
         return true;
+    }
+
+
+    public List<ImageFile> retrieveImage(String name,HttpServletResponse response){
+
+        List<ImageFile> imageFile = null;
+
+        try{
+              imageFile =  this.jdbcTemplate.query("Select * from images where file_name ='"+name+"'",
+                    new BeanPropertyRowMapper(ImageFile.class));
+
+              return imageFile;
+        }
+        catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+
     }
 }

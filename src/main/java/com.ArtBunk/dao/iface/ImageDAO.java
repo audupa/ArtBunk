@@ -1,8 +1,10 @@
 package com.ArtBunk.dao.iface;
 
 import com.ArtBunk.classes.Image;
+import com.ArtBunk.classes.ImageFile;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
@@ -21,4 +23,6 @@ public interface ImageDAO {
     public List<Image> getImagesWithCriteria(String criteria, String limit);
 
     public boolean saveImage(MultipartFile file) throws IOException;
+
+    public List<ImageFile> retrieveImage(String name,HttpServletResponse response);
 }

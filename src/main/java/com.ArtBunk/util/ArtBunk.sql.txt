@@ -1,0 +1,51 @@
+/*-------Inserts-------------------------------------
+---
+---     Insert table images
+---
+-------------------------------------------------------------*/
+
+
+CREATE  TABLE `testdb`.`images` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `content` MEDIUMBLOB NULL ,
+  `content_type` VARCHAR(100) NULL ,
+  `date_created` DATETIME NULL ,
+  `file_size` BIGINT(20) NULL ,
+  `file_name` VARCHAR(50) NOT NULL ,
+  PRIMARY KEY (`id`) );
+
+
+/*-------Inserts-------------------------------------
+---
+---     Insert table images_repo
+---
+-------------------------------------------------------------*/
+
+ CREATE  TABLE `testdb`.`image_repo` (
+   `id` INT NOT NULL AUTO_INCREMENT ,
+   `name` VARCHAR(45) NULL ,
+   `description` VARCHAR(100) NULL ,
+   `category` VARCHAR(50) NULL ,
+   `image_url` VARCHAR(100) NOT NULL ,
+   `image_cost` BIGINT NULL ,
+   `no_of_likes` INT NULL ,
+   `date_created` DATETIME NULL ,
+   `last_updated` DATETIME NULL ,
+   `medium` VARCHAR(45) NULL ,
+   `user_name` VARCHAR(50) NULL ,
+   PRIMARY KEY (`id`) );
+
+ /*-------Inserts-------------------------------------
+ ---
+ ---     Sample Insert into image_repo
+ ---
+ -------------------------------------------------------------*/
+   insert into image_repo(id,name, description,
+     category,
+     image_url,
+     image_cost,
+     no_of_likes,
+     date_created,
+     last_updated,
+     medium,
+     user_name) values (1,'first image','first image','painting','http://172.19.138.83:8080/ArtBunk/image',1000, 0, now(),now(),'acrylic','Akshatha');
