@@ -59,10 +59,18 @@ public class ImageControllerImpl implements ImageController {
         return images;
     }
 
-    public @ResponseBody String handleFileUpload(@RequestParam("file") MultipartFile file){
+    public @ResponseBody String handleFileUpload(@RequestParam("name") String name,@RequestParam("description") String description,@RequestParam("category") String category,@RequestParam("image_cost") String image_cost,@RequestParam("medium") String medium,@RequestParam("user_name") String user_name, @RequestParam("file") MultipartFile file){
         if (!file.isEmpty()) {
             try {
-                imageDAO.saveImage(file);
+                Image image=new Image();
+                image.setCategory(category);
+                image.setDescription(description);
+                image.setName(name);
+                image.setImageCost(Integer.parseInt(image_cost));
+                image.setMedium(medium);
+                image.setUserName(user_name);
+
+                imageDAO.saveImage(file,image);
                 return "You successfully uploaded!";
             } catch (Exception e) {
                 return "You failed to upload" + e.getMessage();

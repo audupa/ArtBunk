@@ -23,7 +23,7 @@ import java.util.List;
 
 public interface ImageController {
 
-    @RequestMapping(value="/images",method= RequestMethod.GET)
+    @RequestMapping(value="/allImages",method= RequestMethod.GET)
     @ResponseBody
     public List<Image> getImages(@RequestParam(value="category",required=false, defaultValue = Constant.defaultImageCategory) String category,@RequestParam(value="limit",required=false,defaultValue = Constant.defaultImageLimit) String limit,HttpServletResponse response);
 
@@ -32,7 +32,7 @@ public interface ImageController {
     public List<Image> getImagesWithCriteria(@PathVariable("criteria") String criteria,@RequestParam(value="limit",required=false,defaultValue = Constant.defaultImageLimit) String limit,HttpServletResponse response);
 
     @RequestMapping(value="/image/upload", method=RequestMethod.POST)
-    public @ResponseBody String handleFileUpload(@RequestParam(value="file",required = false) MultipartFile file);
+    public @ResponseBody String handleFileUpload(@RequestParam(value="name", required = false) String name,@RequestParam(value="description",required = false) String description,@RequestParam(value="category",required = false) String category,@RequestParam(value="image_cost",required = false) String image_cost,@RequestParam(value="medium",required = false) String medium,@RequestParam(value="user_name",required = false) String user_name,@RequestParam(value="file",required = false) MultipartFile file);
 
     @RequestMapping(value="/img/{name}.{ext}", method=RequestMethod.GET)
     public ResponseEntity retrieveImage(@PathVariable("name") String name,@PathVariable("ext") String ext, HttpServletResponse response )throws IOException;

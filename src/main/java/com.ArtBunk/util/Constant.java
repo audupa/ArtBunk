@@ -11,8 +11,8 @@ package com.ArtBunk.util;
 //placeholder for all the constants
 public class Constant {
 
-  //public static final String imageUrlPrefix = "http://172.19.138.83:8080/ArtBunk/img/";
-  public static final String imageUrlPrefix = "http://localhost:8080/img/";
+  public static final String imageUrlPrefix = "http://172.19.138.83:8080/ArtBunk/img/";
+  //public static final String imageUrlPrefix = "http://localhost:8080/img/";
   public static final String defaultImageLimit = "4";
   public static final String defaultImageCategory = "painting";
 

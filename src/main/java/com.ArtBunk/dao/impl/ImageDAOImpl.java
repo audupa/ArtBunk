@@ -77,7 +77,7 @@ public class ImageDAOImpl extends BaseDAOImpl implements ImageDAO{
     }
 
 
-    public boolean saveImage(MultipartFile file) throws IOException {
+    public boolean saveImage(MultipartFile file,Image image) throws IOException {
         ImageFile imageFile = null;
         if(!file.isEmpty()) {
 
@@ -108,9 +108,10 @@ public class ImageDAOImpl extends BaseDAOImpl implements ImageDAO{
 
             String image_url = Constant.imageUrlPrefix + file.getOriginalFilename();
             // update the image_repo to store this id add an entry in the image_repo table
-            String SQL = "insert into image_repo (image_url) values (?)";
+            String SQL = "insert into image_repo (image_url,date_created,last_updated,name,description,category,image_cost,medium,user_name) values (?,now(),now(),?,?,?,?,?,?)";
 
-            jdbcTemplate.update(SQL,image_url);
+            jdbcTemplate.update(SQL,image_url,image.getUserName(),image.getDescription(),image.getCategory(),image.getImageCost(),image.getMedium(),image.getUserName());
+
 
         }
         return true;
