@@ -8,6 +8,8 @@
          version="2.5">
   <display-name>Archetype Created Web Application</display-name>
 
+
+
     <servlet>
         <servlet-name>mvc-dispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -18,12 +20,32 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
 
+
+
     <servlet-mapping>
         <servlet-name>mvc-dispatcher</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-    <context-param>
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>default</servlet-name>-->
+        <!--<url-pattern>/test/*</url-pattern>-->
+    <!--</servlet-mapping>-->
+  <!--  <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.js</url-pattern>
+        <url-pattern>*.css</url-pattern>
+        <url-pattern>*.png</url-pattern>
+        <url-pattern>*.gif</url-pattern>
+        <url-pattern>*.jpg</url-pattern>
+        <url-pattern>*.jpeg</url-pattern>
+        <url-pattern>*.eot</url-pattern>
+        <url-pattern>*.svg</url-pattern>
+        <url-pattern>*.ttf</url-pattern>
+        <url-pattern>*.woff</url-pattern>
+    </servlet-mapping>
+-->
+<context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>/WEB-INF/app-config.xml</param-value>
     </context-param>
@@ -34,5 +56,14 @@
             org.springframework.web.context.ContextLoaderListener
         </listener-class>
     </listener>
+
+    <filter>
+        <filter-name>CorsFilter</filter-name>
+        <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>CorsFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
 </web-app>
