@@ -37,10 +37,7 @@ public class ImageDAOImpl extends BaseDAOImpl implements ImageDAO{
         catch (EmptyResultDataAccessException e) {
             return null;
         }
-        if(images!=null)
-            return images;
-        else
-            return null;
+        return images;
 
     }
 
@@ -69,10 +66,23 @@ public class ImageDAOImpl extends BaseDAOImpl implements ImageDAO{
             }
         }
 
-        if(images!=null)
-            return images;
-        else
+        return images;
+
+    }
+
+    //show all the images depending on a criteria and limit being optional
+
+    public List<Image> getImageById(String id){
+        List<Image> image = null;
+
+        try{
+            image  = this.jdbcTemplate.query("Select * from image_repo where id=" +id,
+                    new BeanPropertyRowMapper(Image.class));
+            return image;
+        }
+        catch (EmptyResultDataAccessException e) {
             return null;
+        }
 
     }
 
@@ -129,8 +139,7 @@ public class ImageDAOImpl extends BaseDAOImpl implements ImageDAO{
               return imageFile;
         }
         catch (EmptyResultDataAccessException e) {
-            return null;
+            return imageFile;
         }
-
     }
 }

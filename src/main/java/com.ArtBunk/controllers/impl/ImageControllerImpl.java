@@ -59,6 +59,13 @@ public class ImageControllerImpl implements ImageController {
         return images;
     }
 
+    public List<Image> getImageById(@PathVariable("id")String id, HttpServletResponse response){
+
+        List<Image> image = null;
+        image = imageDAO.getImageById(id);
+        return image;
+    }
+
     public @ResponseBody String handleFileUpload(@RequestParam("name") String name,@RequestParam("description") String description,@RequestParam("category") String category,@RequestParam("image_cost") String image_cost,@RequestParam("medium") String medium,@RequestParam("user_name") String user_name, @RequestParam("file") MultipartFile file){
         if (!file.isEmpty()) {
             try {

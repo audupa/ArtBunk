@@ -27,9 +27,13 @@ public interface ImageController {
     @ResponseBody
     public List<Image> getImages(@RequestParam(value="category",required=false, defaultValue = Constant.defaultImageCategory) String category,@RequestParam(value="limit",required=false,defaultValue = Constant.defaultImageLimit) String limit,HttpServletResponse response);
 
-    @RequestMapping(value="/images/{criteria}",method= RequestMethod.GET)
+    @RequestMapping(value="/images/criteria/{criteria}",method= RequestMethod.GET)
     @ResponseBody
     public List<Image> getImagesWithCriteria(@PathVariable("criteria") String criteria,@RequestParam(value="limit",required=false,defaultValue = Constant.defaultImageLimit) String limit,HttpServletResponse response);
+
+    @RequestMapping(value="/images/{id}",method= RequestMethod.GET)
+    @ResponseBody
+    public List<Image> getImageById(@PathVariable("id") String id,HttpServletResponse response);
 
     @RequestMapping(value="/image/upload", method=RequestMethod.POST)
     public @ResponseBody String handleFileUpload(@RequestParam(value="name", required = false) String name,@RequestParam(value="description",required = false) String description,@RequestParam(value="category",required = false) String category,@RequestParam(value="image_cost",required = false) String image_cost,@RequestParam(value="medium",required = false) String medium,@RequestParam(value="user_name",required = false) String user_name,@RequestParam(value="file",required = false) MultipartFile file);
