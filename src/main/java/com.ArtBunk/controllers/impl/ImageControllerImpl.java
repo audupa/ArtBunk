@@ -59,9 +59,9 @@ public class ImageControllerImpl implements ImageController {
         return images;
     }
 
-    public List<Image> getImageById(@PathVariable("id")String id, HttpServletResponse response){
+    public Image getImageById(@PathVariable("id")String id, HttpServletResponse response){
 
-        List<Image> image = null;
+        Image image = null;
         image = imageDAO.getImageById(id);
         return image;
     }

@@ -72,13 +72,13 @@ public class ImageDAOImpl extends BaseDAOImpl implements ImageDAO{
 
     //show all the images depending on a criteria and limit being optional
 
-    public List<Image> getImageById(String id){
+    public Image getImageById(String id){
         List<Image> image = null;
 
         try{
             image  = this.jdbcTemplate.query("Select * from image_repo where id=" +id,
                     new BeanPropertyRowMapper(Image.class));
-            return image;
+            return image.get(0);
         }
         catch (EmptyResultDataAccessException e) {
             return null;
